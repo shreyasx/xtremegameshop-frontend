@@ -1,0 +1,44 @@
+.btn,
+.jumbotron,
+.nav :hover {
+	border-radius: 0px;
+}
+
+body {
+	background: #343a40;
+}
+
+footer {
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.list {
+	color: white;
+	line-height: 2em;
+}
+
+.list a {
+	color: white;
+}
+
+.forgot {
+	color: white;
+}
+
+.forgot:hover {
+	color: white;
+}
+
+@media only screen and (max-width: 768px) {
+	#carttt {
+		padding: 0 !important;
+		margin: 0;
+	}
+}
+
+#verifyEmailAddressLink:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}

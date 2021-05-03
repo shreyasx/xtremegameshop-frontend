@@ -218,7 +218,7 @@ const Signup = () => {
 
 	return (
 		<Base
-			title="Signup to Extreme Game Store"
+			title="Signup to Xtreme Gameshop"
 			description="Signup now to be able to buy your favourite games!"
 		>
 			{loadingMessage()}

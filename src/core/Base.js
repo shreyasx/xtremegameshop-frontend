@@ -1,6 +1,5 @@
 import React from "react";
 import Menu from "./Menu";
-import { Link } from "react-router-dom";
 
 const Base = ({
 	title = "My Title",
@@ -21,11 +20,26 @@ const Base = ({
 			<footer className="footer bg-dark mt-5">
 				<div className=" pb-4 container-fluid p-3 bg-success text-white text-center">
 					<h4 className="p-3">Feel free to reach out in case of queries.</h4>
-					<Link to="/about">
+					<h6>
+						Website created and maintained by{" "}
+						<a
+							style={{ color: "white" }}
+							href="https://shreyasjamkhandi.tech/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Shreyas Jamkhandi.
+						</a>
+					</h6>
+					<a
+						href="https://drive.google.com/file/d/18Vwynqc0O32Gt5Z-1ei0OBUmu910DX6d/view?usp=sharing"
+						target="_blank"
+						rel="noreferrer"
+					>
 						<button style={{ fontWeight: "bold" }} className="btn btn-warning">
-							Contact Us
+							View Privacy policy
 						</button>
-					</Link>
+					</a>
 				</div>
 			</footer>
 		</div>

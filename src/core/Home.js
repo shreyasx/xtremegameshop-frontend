@@ -50,10 +50,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<Base
-			title="Extreme Game Store"
-			description="Find your most desired games!"
-		>
+		<Base title="Xtreme Gameshop" description="Find your most desired games!">
 			<h1 className="text-white">Our Games Collection</h1>
 			<div className="row text-center">
 				{error ? error : ""}

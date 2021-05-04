@@ -141,7 +141,6 @@ const Signin = () => {
 	};
 
 	const responseGoogle = response => {
-		console.log(response);
 		const { name, email, googleId } = response.profileObj;
 		fetch(`${API}/signup/google`, {
 			method: "POST",
@@ -180,7 +179,6 @@ const Signin = () => {
 	};
 
 	const responseFacebook = response => {
-		console.log(response);
 		const { name, email, userID } = response;
 		fetch(`${API}/signup/facebook`, {
 			method: "POST",

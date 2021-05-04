@@ -23,13 +23,14 @@ const Base = ({
 					<h6>
 						Website created and maintained by{" "}
 						<a
-							style={{ color: "white" }}
+							style={{ color: "rgb(133, 208, 255)" }}
 							href="https://shreyasjamkhandi.tech/"
 							target="_blank"
 							rel="noreferrer"
 						>
-							Shreyas Jamkhandi.
+							Shreyas Jamkhandi
 						</a>
+						.<br /> &#169;All rights reserved.
 					</h6>
 					<a
 						href="https://drive.google.com/file/d/18Vwynqc0O32Gt5Z-1ei0OBUmu910DX6d/view?usp=sharing"

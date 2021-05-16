@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 import Base from "./Base";
-import Card from "./Card";
+import Card2 from "./newCard";
 import { getProducts } from "./helper/coreapicalls";
 import { API } from "../backend";
 
@@ -50,13 +50,20 @@ export default function Home() {
 	}, []);
 
 	return (
-		<Base title="Xtreme Gameshop" description="Find your most desired games!">
-			<h1 className="text-white">Our Games Collection</h1>
-			<div className="row text-center">
-				{error ? error : ""}
-				{categories.length > 0 ? (
-					<h2 style={{ margin: "20px" }} className="text-white">
-						{"Pick a Category: "}&nbsp;&nbsp;&nbsp;
+		<Base title="XTREME Gameshop" description="Find your most desired games!">
+			<div className="row">
+				<h1 style={{ margin: "0px auto" }} className="text-white">
+					EXTREME Game Collection
+				</h1>
+			</div>
+
+			{error ? error : ""}
+			{categories.length > 0 ? (
+				<div className="row text-white">
+					<div style={{ margin: "20px auto", textAlign: "center" }}>
+						<h2 style={{ display: "inline" }}>
+							{"Pick a Category: "}&nbsp;&nbsp;&nbsp;
+						</h2>
 						<button
 							className="btn booboo btn-success"
 							onClick={() => {
@@ -95,33 +102,33 @@ export default function Home() {
 								&nbsp;&nbsp;
 							</span>
 						))}
-					</h2>
-				) : (
-					""
-				)}
-				{loading ? (
-					<>
-						<img
-							style={{ width: "200px" }}
-							src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif"
-							alt="loading"
-						/>
-						<h3 className="text-white">Loading Games...</h3>
-					</>
-				) : (
-					<>
-						<div className="row">
-							{products.map((product, index) => {
-								return (
-									<div key={index} className="col-md-4 col-sm-6 col-xl-3 mb-4">
-										<Card product={product} />
-									</div>
-								);
-							})}
-						</div>
-					</>
-				)}
-			</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
+			{loading ? (
+				<div className="row">
+					<img
+						style={{ width: "200px" }}
+						src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif"
+						alt="loading"
+					/>
+					<h3 className="text-white">Loading Games...</h3>
+				</div>
+			) : (
+				<>
+					<div className="row">
+						{products.map((product, index) => {
+							return (
+								<div key={index} className="col-md-4 col-sm-6 col-xl-3 mb-4">
+									<Card2 product={product} />
+								</div>
+							);
+						})}
+					</div>
+				</>
+			)}
 		</Base>
 	);
 }

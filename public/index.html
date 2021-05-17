@@ -12,14 +12,22 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-  <title>Xtreme Gameshop</title>
+  <title>XTREME Gameshop</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-
+  <script>
+    window.onload = () => {
+      const init = document.getElementById('initial-loading');
+      const base = document.getElementById('base');
+      init.style.display = 'none';
+      base.style.display = 'block';
+      localStorage.setItem('firstLoad', 'done');
+    };
+    window.addEventListener("beforeunload", event => localStorage.removeItem('firstLoad'));
+  </script>
 </body>
 
 </html>

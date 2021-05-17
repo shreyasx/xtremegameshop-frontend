@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 import Base from "./Base";
-import Card from "./Card";
+import Card2 from "./newCard";
 import { loadCart } from "./helper/carthelper";
 import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
@@ -55,17 +55,19 @@ const Cart = () => {
 		if (products.length === 0) return "No items in your cart. Go add some now!";
 		else
 			return (
-				<div>
+				<div className="row">
 					{products.map((product, index) => (
-						<Card
-							key={index}
-							product={product}
-							addtoCart={false}
-							removeFromCart={true}
-							setReload={setReload}
-							reload={reload}
-							cart={true}
-						/>
+						<div style={{ margin: "10px auto" }} className="col-xs-6">
+							<Card2
+								key={index}
+								product={product}
+								addtoCart={false}
+								removeFromCart={true}
+								setReload={setReload}
+								reload={reload}
+								cart={true}
+							/>
+						</div>
 					))}
 				</div>
 			);
@@ -137,7 +139,7 @@ const Cart = () => {
 						<h2>This Section for Checking out:</h2>
 						{verified ? (
 							<StripeCheckout
-								stripeKey="pk_test_51IBXOSJZ5SfvqGzXiCyNg9KYR752jDXw1VmT0ZZJk4TtGnh0uioNCnLYWj1RMLPExNgyc5Py80yvr5zprsFQCdTp00MgYD5aGu"
+								stripeKey={process.env.REACT_APP_STRIPE_KEY}
 								token={handleToken}
 								amount={getPrice() * 100}
 								name="Products"
@@ -145,7 +147,7 @@ const Cart = () => {
 								shippingAddress
 							/>
 						) : (
-							"Verify your account to continue with your order."
+							`Go to user dashboard and verify your email address to continue with your order.`
 						)}
 					</>
 				)}

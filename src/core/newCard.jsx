@@ -55,6 +55,7 @@ const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 		return (
 			removeFromCart && (
 				<button
+					style={{ width: "85%", margin: "0 auto" }}
 					onClick={() => {
 						removeItemFromCart(product._id, () => {
 							window.location.href = "/cart";
@@ -80,6 +81,7 @@ const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 							backgroundPosition: "center",
 							background: "#343a40",
 							border: "1px solid white",
+							textAlign: "center",
 						}}
 					>
 						<h1 className="card-header text-light lead">{cardTitle}</h1>

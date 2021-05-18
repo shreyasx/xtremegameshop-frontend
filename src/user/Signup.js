@@ -8,6 +8,8 @@ import { authenticate, signin, isAuthenticated } from "../auth/helper";
 import { Redirect } from "react-router-dom";
 // import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
+import Particles from "react-particles-js";
+import bodyConfig from "../body";
 
 const Signup = () => {
 	const [values, setValues] = useState({
@@ -107,7 +109,7 @@ const Signup = () => {
 								callback={responseFacebook}
 							/>
 							{/* <FacebookLogin
-								appId="432706677778563"
+								appId=""
 								autoLoad={false}
 								callback={responseFacebook}
 								render={renderProps => (
@@ -217,14 +219,17 @@ const Signup = () => {
 	};
 
 	return (
-		<Base
-			title="Signup to Xtreme Gameshop"
-			description="Signup now to be able to buy your favourite games!"
-		>
-			{loadingMessage()}
-			{signupForm()}
-			{performRedirect()}
-		</Base>
+		<>
+			<Particles params={bodyConfig} />
+			<Base
+				title="Signup to Xtreme Gameshop"
+				description="Signup now to be able to buy your favourite games!"
+			>
+				{loadingMessage()}
+				{signupForm()}
+				{performRedirect()}
+			</Base>
+		</>
 	);
 };
 

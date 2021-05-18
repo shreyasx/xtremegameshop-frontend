@@ -6,6 +6,8 @@ import FacebookLogin from "react-facebook-login";
 import { API } from "../backend";
 import { GoogleLogin } from "react-google-login";
 import { toast } from "react-toastify";
+import Particles from "react-particles-js";
+import bodyConfig from "../body";
 
 const Signin = () => {
 	const [values, setValues] = useState({
@@ -214,12 +216,15 @@ const Signin = () => {
 	};
 
 	return (
-		<Base title="Signin" description="Signin to your account to make orders!">
-			{loadingMessage()}
-			{errorMessage()}
-			{signinForm()}
-			{performRedirect()}
-		</Base>
+		<>
+			<Particles params={bodyConfig} />
+			<Base title="Signin" description="Signin to your account to make orders!">
+				{loadingMessage()}
+				{errorMessage()}
+				{signinForm()}
+				{performRedirect()}
+			</Base>
+		</>
 	);
 };
 

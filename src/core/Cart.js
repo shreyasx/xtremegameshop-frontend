@@ -11,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { emptyCart } from "./helper/carthelper";
 import { API } from "../backend";
+import Particles from "react-particles-js";
+import bodyConfig from "../body";
 
 toast.configure();
 
@@ -55,9 +57,9 @@ const Cart = () => {
 		if (products.length === 0) return "No items in your cart. Go add some now!";
 		else
 			return (
-				<div className="row">
+				<div className="row" style={{ alignItems: "flex-start" }}>
 					{products.map((product, index) => (
-						<div style={{ margin: "10px auto" }} className="col-xs-6">
+						<div style={{ margin: "10px 10px" }}>
 							<Card2
 								key={index}
 								product={product}
@@ -156,23 +158,26 @@ const Cart = () => {
 	};
 
 	return (
-		<Base title="Your Cart" description="Ready to checkout">
-			<div className="row text-white">
-				{!isAuthenticated().user ? (
-					<h6>
-						Please <Link to="/signin">SignIn</Link> first.
-					</h6>
-				) : (
-					<>
-						<div className="col-md-6">
-							<h2>Your Cart:</h2>
-							{loading ? <h2>Loading Cart...</h2> : loadAllProducts()}
-						</div>
-						<div className="col-md-6">{loadCheckout()}</div>
-					</>
-				)}
-			</div>
-		</Base>
+		<>
+			<Particles params={bodyConfig} />
+			<Base title="Your Cart" description="Ready to checkout">
+				<div className="row text-white">
+					{!isAuthenticated().user ? (
+						<h6>
+							Please <Link to="/signin">SignIn</Link> to access your cart.
+						</h6>
+					) : (
+						<>
+							<div className="col-md-8">
+								<h2>Your Cart:</h2>
+								{loading ? <h2>Loading Cart...</h2> : loadAllProducts()}
+							</div>
+							<div className="col-md-4">{loadCheckout()}</div>
+						</>
+					)}
+				</div>
+			</Base>
+		</>
 	);
 };
 

@@ -4,6 +4,8 @@ import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import React from "react";
 import { authenticate } from "../auth/helper";
+import fb from "../images/fb.jpg";
+import google from "../images/google.jpg";
 
 const Buttons = ({ setValues, values }) => {
 	const responseGoogle = response => {
@@ -97,12 +99,7 @@ const Buttons = ({ setValues, values }) => {
 								borderRadius: "2px",
 							}}
 						>
-							<img
-								style={{ width: "25px" }}
-								src="https://cdn.iconscout.com/icon/free/png-256/facebook-logo-2019-1597680-1350125.png"
-								alt="fb-logo"
-								srcset=""
-							/>
+							<img style={{ width: "25px" }} src={fb} alt="fb-logo" srcset="" />
 						</div>
 					</button>
 				)}
@@ -124,8 +121,8 @@ const Buttons = ({ setValues, values }) => {
 						>
 							<img
 								style={{ width: "25px" }}
-								src="https://www.dtl.coventry.domains/wp-content/uploads/2020/07/Google-Logo.png"
-								alt="fb-logo"
+								src={google}
+								alt="google-logo"
 								srcset=""
 							/>
 						</div>

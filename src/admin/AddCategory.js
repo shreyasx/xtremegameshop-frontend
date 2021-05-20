@@ -56,7 +56,7 @@ const AddCategory = () => {
 	const myCategoryForm = () => (
 		<form>
 			<div className="form-group">
-				<p className="lead">Enter the category</p>
+				<p className="lead mt-2">Enter the category name:</p>
 				<input
 					onChange={handleChange}
 					value={name}
@@ -64,7 +64,7 @@ const AddCategory = () => {
 					className="form-control my-3"
 					autoFocus
 					required
-					placeholder="For ex. Summer"
+					placeholder="For ex. Adventure"
 				/>
 				<button onClick={onSubmit} className="btn btn-outline-info">
 					Create category

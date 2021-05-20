@@ -12,7 +12,7 @@ import { API } from "../backend";
 
 const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 	const cardTitle = product ? product.name : "A photo from pexels";
-	const cardDescription = product ? product.descripton : "DEFAULT description";
+	const cardDescription = product ? product.description : "DEFAULT description";
 	const cardPrice = product ? product.price : "5";
 
 	const addToCart = () => {
@@ -85,9 +85,7 @@ const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 						}}
 					>
 						<h1 className="card-header text-light lead">{cardTitle}</h1>
-						<p className="lead bg-success font-weight-normal text-wrap">
-							{cardDescription}
-						</p>
+						<p>{cardDescription}</p>
 						<p className="btn btn-success rounded  btn-sm px-4">₹{cardPrice}</p>
 						<div className="row">
 							<div className="col-12">{showAddToCart()}</div>

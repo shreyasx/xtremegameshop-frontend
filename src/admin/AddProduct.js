@@ -3,6 +3,7 @@ import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { getCategories, createaProduct } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper/index";
+import LoadingGIF from "../core/loadingGIF";
 
 const AddProduct = () => {
 	const { user, token } = isAuthenticated();
@@ -27,6 +28,7 @@ const AddProduct = () => {
 		description,
 		price,
 		stock,
+		loading,
 		categories,
 		error,
 		createdProduct,
@@ -35,7 +37,6 @@ const AddProduct = () => {
 
 	const preload = () => {
 		getCategories().then(data => {
-			//console.log(data);
 			if (data.error) {
 				setValues({ ...values, error: data.error });
 			} else {
@@ -44,7 +45,8 @@ const AddProduct = () => {
 		});
 	};
 
-	useEffect(preload);
+	// eslint-disable-next-line
+	useEffect(preload, []);
 
 	const onSubmit = event => {
 		event.preventDefault();
@@ -92,14 +94,14 @@ const AddProduct = () => {
 	);
 
 	const createProductForm = () => (
-		<form>
+		<form onSubmit={onSubmit}>
 			<span>Post photo</span>
 			<div className="form-group">
 				<label className="btn btn-block btn-success">
 					<input
 						onChange={handleChange("photo")}
 						type="file"
-						name="photo"
+						required
 						accept="image"
 						placeholder="choose a file"
 					/>
@@ -108,18 +110,19 @@ const AddProduct = () => {
 			<div className="form-group">
 				<input
 					onChange={handleChange("name")}
-					name="photo"
 					className="form-control"
+					required
 					placeholder="Name"
 					value={name}
 				/>
 			</div>
 			<div className="form-group">
 				<textarea
+					maxLength="120"
 					onChange={handleChange("description")}
-					name="photo"
 					className="form-control"
-					placeholder="Description"
+					required
+					placeholder="Description Max 120 characters."
 					value={description}
 				/>
 			</div>
@@ -127,6 +130,7 @@ const AddProduct = () => {
 				<input
 					onChange={handleChange("price")}
 					type="number"
+					required
 					className="form-control"
 					placeholder="Price"
 					value={price}
@@ -137,6 +141,7 @@ const AddProduct = () => {
 					onChange={handleChange("category")}
 					className="form-control"
 					placeholder="Category"
+					required
 				>
 					<option>Select</option>
 					{categories &&
@@ -151,17 +156,14 @@ const AddProduct = () => {
 				<input
 					onChange={handleChange("stock")}
 					type="number"
+					required
 					className="form-control"
 					placeholder="Stock"
 					value={stock}
 				/>
 			</div>
 
-			<button
-				type="submit"
-				onClick={onSubmit}
-				className="btn btn-outline-success mb-3"
-			>
+			<button type="submit" className="btn btn-outline-success mb-3">
 				Create Product
 			</button>
 		</form>
@@ -173,16 +175,22 @@ const AddProduct = () => {
 			description="Welcome to product creation section"
 			className="container bg-info p-4"
 		>
-			<Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-				Admin Home
-			</Link>
-			<div className="row bg-dark text-white rounded">
-				<div className="col-md-8 offset-md-2">
-					{successMessage()}
-					{errorMessage()}
-					{createProductForm()}
-				</div>
-			</div>
+			{loading ? (
+				<LoadingGIF />
+			) : (
+				<>
+					<Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
+						Admin Home
+					</Link>
+					<div className="row bg-dark text-white rounded">
+						<div className="col-md-8 offset-md-2">
+							{successMessage()}
+							{errorMessage()}
+							{createProductForm()}
+						</div>
+					</div>
+				</>
+			)}
 		</Base>
 	);
 };

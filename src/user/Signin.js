@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect, Link } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
-import FacebookLogin from "react-facebook-login";
-import { API } from "../backend";
-import { GoogleLogin } from "react-google-login";
 import { toast } from "react-toastify";
 import Particles from "react-particles-js";
 import bodyConfig from "../body";
+import Buttons from "./social-buttons";
 
 const Signin = () => {
 	const [values, setValues] = useState({
@@ -117,102 +115,11 @@ const Signin = () => {
 						<button onClick={onSubmit} className="btn btn-success btn-block">
 							Submit
 						</button>
-						<div
-							className="fb-login"
-							style={{ textAlign: "center", margin: "20px auto" }}
-						>
-							<FacebookLogin
-								appId={process.env.REACT_APP_FACEBOOK_APPID}
-								autoLoad={false}
-								fields="name,email"
-								onClick={componentClicked}
-								callback={responseFacebook}
-							/>
-							<GoogleLogin
-								clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-								buttonText="Continue with Google"
-								onSuccess={responseGoogle}
-								onFailure={responseGoogle}
-								cookiePolicy={"single_host_origin"}
-							/>
-						</div>
+						<Buttons setValues={setValues} values={values} />
 					</form>
 				</div>
 			</div>
 		);
-	};
-
-	const responseGoogle = response => {
-		const { name, email, googleId } = response.profileObj;
-		fetch(`${API}/signup/google`, {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ name, email, googleId }),
-		})
-			.then(r => r.json())
-			.then(data => {
-				if (data.error) {
-					setValues({
-						...values,
-						error:
-							"An account already exists with that email, but you cannot use your " +
-							"Google account to sign in. Please enter your password.",
-						loading: false,
-					});
-				} else {
-					authenticate(data, () => {
-						setValues({
-							...values,
-							didRedirect: true,
-						});
-					});
-				}
-			})
-			.catch(er => {
-				console.log("Signin request failed");
-			});
-	};
-
-	const componentClicked = () => {
-		setValues({ ...values, error: false });
-	};
-
-	const responseFacebook = response => {
-		const { name, email, userID } = response;
-		fetch(`${API}/signup/facebook`, {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ name, email, userID }),
-		})
-			.then(r => r.json())
-			.then(data => {
-				if (data.error) {
-					setValues({
-						...values,
-						error:
-							"An account already exists with that email, but you cannot use your " +
-							"Facebook account to sign in. Please enter your password.",
-						loading: false,
-					});
-				} else {
-					authenticate(data, () => {
-						setValues({
-							...values,
-							didRedirect: true,
-							loading: false,
-						});
-					});
-				}
-			})
-			.catch(er => {
-				console.log("Signin request failed");
-			});
 	};
 
 	return (

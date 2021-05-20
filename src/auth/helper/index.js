@@ -45,9 +45,7 @@ export const signout = next => {
 
 	return fetch(`${API}/signout`, {
 		method: "GET",
-	})
-		.then(response => console.log("signout success"))
-		.catch(err => console.log(err));
+	}).catch(err => console.log(err));
 };
 
 export const isAuthenticated = () => {

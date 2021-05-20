@@ -47,6 +47,7 @@ const Buttons = ({ setValues, values }) => {
 	};
 
 	const responseFacebook = response => {
+		console.log("fres- ", response);
 		const { name, email, userID } = response;
 		fetch(`${API}/signup/facebook`, {
 			method: "POST",

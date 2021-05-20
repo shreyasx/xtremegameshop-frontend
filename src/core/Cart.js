@@ -37,7 +37,7 @@ const Cart = () => {
 			.catch(console.log);
 	};
 
-	useEffect(isVerified);
+	useEffect(isVerified, []);
 
 	const getPrice = () => {
 		var price = 0;
@@ -51,7 +51,7 @@ const Cart = () => {
 			setProducts(ps);
 			setLoading(false);
 		})();
-	}, [reload]);
+	}, []);
 
 	const loadAllProducts = () => {
 		if (products.length === 0) return "No items in your cart. Go add some now!";

@@ -27,7 +27,7 @@ const ResetPassword = () => {
 				setLoading(false);
 			})
 			.catch(console.log);
-	});
+	}, []);
 
 	const successMessage = () => {
 		return (

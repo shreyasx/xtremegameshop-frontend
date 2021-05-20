@@ -23,7 +23,8 @@ const Verify = ({ match }) => {
 			.catch(console.log);
 	};
 
-	useEffect(check);
+	// eslint-disable-next-line
+	useEffect(check, []);
 
 	return (
 		<Base title="Account Verification Page" description="">

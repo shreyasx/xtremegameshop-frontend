@@ -26,7 +26,7 @@ const UserDashboard = () => {
 			.catch(console.log);
 	};
 
-	useEffect(isVerified);
+	useEffect(isVerified, []);
 
 	const errorMessage = () => {
 		return (

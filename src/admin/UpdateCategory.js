@@ -28,7 +28,8 @@ const UpdateCategory = ({ match }) => {
 			});
 	};
 
-	useEffect(() => preload(match.params.categoryId));
+	// eslint-disable-next-line
+	useEffect(() => preload(match.params.categoryId), []);
 
 	const goBack = () => (
 		<div className="mt-5">

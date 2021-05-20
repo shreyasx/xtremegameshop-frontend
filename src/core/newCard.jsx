@@ -82,12 +82,20 @@ const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 							background: "#343a40",
 							border: "1px solid white",
 							textAlign: "center",
+							position: "relative",
 						}}
 					>
 						<h1 className="card-header text-light lead">{cardTitle}</h1>
-						<p>{cardDescription}</p>
-						<p className="btn btn-success rounded  btn-sm px-4">₹{cardPrice}</p>
-						<div className="row">
+						<p className="mt-4">{cardDescription}</p>
+						<p className="btn btn-success rounded btn-sm px-4">₹{cardPrice}</p>
+						<div
+							style={{
+								position: "absolute",
+								bottom: "20px",
+								margin: "0px",
+								width: "100%",
+							}}
+						>
 							<div className="col-12">{showAddToCart()}</div>
 							<div className="col-12">{showRemoveFromCart()}</div>
 						</div>

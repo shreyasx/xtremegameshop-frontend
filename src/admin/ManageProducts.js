@@ -21,9 +21,7 @@ const ManageProducts = () => {
 		});
 	};
 
-	useEffect(() => {
-		preload();
-	}, []);
+	useEffect(preload, []);
 
 	const deleteThisProduct = productId => {
 		deleteProduct(productId, user._id, token).then(data => {

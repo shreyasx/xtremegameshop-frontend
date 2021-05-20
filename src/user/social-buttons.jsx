@@ -87,7 +87,7 @@ const Buttons = ({ setValues, values }) => {
 			<h5 style={{ display: "inline-block", margin: "0px 20px" }}>
 				Or continue with:{" "}
 			</h5>
-			<FacebookLogin
+			{/* <FacebookLogin
 				appId={process.env.REACT_APP_FACEBOOK_APPID}
 				callback={responseFacebook}
 				onClick={componentClicked}
@@ -104,7 +104,7 @@ const Buttons = ({ setValues, values }) => {
 						</div>
 					</button>
 				)}
-			/>
+			/> */}
 			<GoogleLogin
 				clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
 				render={renderProps => (

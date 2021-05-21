@@ -59,9 +59,14 @@ const Cart = () => {
 			return (
 				<div className="row" style={{ alignItems: "flex-start" }}>
 					{products.map((product, index) => (
-						<div style={{ margin: "10px 10px" }}>
+						<div key={index} style={{ margin: "10px 10px" }}>
 							<Card2
-								key={index}
+								callback={async () => {
+									const ps = await loadCart(isAuthenticated().user._id);
+									setProducts(ps);
+									setLoading(false);
+									toast("Item removed from cart.", { type: "success" });
+								}}
 								product={product}
 								addtoCart={false}
 								removeFromCart={true}

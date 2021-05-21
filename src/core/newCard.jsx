@@ -10,7 +10,12 @@ import {
 } from "react-ui-cards";
 import { API } from "../backend";
 
-const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
+const Card2 = ({
+	product,
+	callback,
+	addtoCart = true,
+	removeFromCart = false,
+}) => {
 	const cardTitle = product ? product.name : "A photo from pexels";
 	const cardDescription = product ? product.description : "DEFAULT description";
 	const cardPrice = product ? product.price : "5";
@@ -57,9 +62,7 @@ const Card2 = ({ product, addtoCart = true, removeFromCart = false }) => {
 				<button
 					style={{ width: "85%", margin: "0 auto" }}
 					onClick={() => {
-						removeItemFromCart(product._id, () => {
-							window.location.href = "/cart";
-						});
+						removeItemFromCart(product._id, callback);
 					}}
 					className="btn btn-block btn-outline-danger mt-2 mb-2"
 				>

@@ -7,7 +7,7 @@ import { API } from "../backend";
 import Particles from "react-particles-js";
 import bodyConfig from "../body";
 
-export default function Home({ history }) {
+export default function Home() {
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [error, setError] = useState(false);
@@ -30,9 +30,11 @@ export default function Home({ history }) {
 			loadAllProducts();
 			return;
 		}
-		fetch(`${API}/getProducts?categ=${category}`)
+		console.log(`${API}/getProducts?category=${category}`);
+		fetch(`${API}/getProducts?category=${category}`)
 			.then(re => re.json())
 			.then(resp => {
+				console.log(resp);
 				setProducts(resp);
 				setLoading(false);
 			})
@@ -54,10 +56,20 @@ export default function Home({ history }) {
 	return (
 		<>
 			<Particles params={bodyConfig} />
-			<Base title="XTREME Gameshop" description="Find your most desired games!">
+			<Base
+				style={{
+					fontSize: "5em",
+					fontFamily: "Montserrat sans-serif",
+					fontWeight: "800",
+					fontStyle: "italic",
+					letterSpacing: ".2em",
+				}}
+				title="XTREME Gameshop"
+				description="Find your most desired games!"
+			>
 				<div className="row">
 					<h1 style={{ margin: "0px auto" }} className="text-white">
-						EXTREME Game Collection
+						Our Top Games Collection
 					</h1>
 				</div>
 

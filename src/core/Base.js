@@ -6,7 +6,7 @@ const Base = ({
 	description = "My Description",
 	className = "text-white p-4",
 	children,
-	style,
+	id,
 }) => {
 	return (
 		<div
@@ -24,7 +24,7 @@ const Base = ({
 					style={{ background: "none" }}
 					className="jumbotron text-white text-center"
 				>
-					<h2 style={style} className="display-4">
+					<h2 id={id} className="display-4">
 						{title}
 					</h2>
 					<p className="lead">{description}</p>

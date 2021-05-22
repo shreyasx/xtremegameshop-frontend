@@ -57,13 +57,7 @@ export default function Home() {
 		<>
 			<Particles params={bodyConfig} />
 			<Base
-				style={{
-					fontSize: "5em",
-					fontFamily: "Montserrat sans-serif",
-					fontWeight: "800",
-					fontStyle: "italic",
-					letterSpacing: ".2em",
-				}}
+				id="main-title"
 				title="XTREME Gameshop"
 				description="Find your most desired games!"
 			>

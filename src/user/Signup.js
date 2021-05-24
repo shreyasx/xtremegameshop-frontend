@@ -3,7 +3,7 @@ import Base from "../core/Base";
 import { signup } from "../auth/helper";
 import Buttons from "./social-buttons";
 import { toast } from "react-toastify";
-import { authenticate, signin, isAuthenticated } from "../auth/helper";
+import { authenticate, isAuthenticated } from "../auth/helper";
 import { Redirect } from "react-router-dom";
 import Particles from "react-particles-js";
 import bodyConfig from "../body";
@@ -26,36 +26,23 @@ const Signup = () => {
 
 	const onSubmit = event => {
 		event.preventDefault();
+		setValues({ ...values, loading: true });
 		signup({ name, email, password })
 			.then(data => {
 				if (data.error) {
+					setValues({ ...values, loading: false });
 					toast(data.error, { type: "error" });
-				} else
-					signin({ email, password })
-						.then(dat => {
-							if (dat.error) {
-								setValues({
-									...values,
-									loading: false,
-								});
-								toast(data.error, {
-									type: "error",
-								});
-							} else {
-								authenticate(dat, () => {
-									setValues({
-										...values,
-										didRedirect: true,
-									});
-								});
-							}
-						})
-						.catch(er => {
-							console.log("Signin request failed");
+				} else {
+					authenticate(data, () => {
+						setValues({
+							...values,
+							didRedirect: true,
 						});
+					});
+				}
 			})
 			.catch(er => {
-				console.log("Error in signup");
+				console.log("Signin request failed");
 			});
 	};
 

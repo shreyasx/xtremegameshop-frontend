@@ -10,6 +10,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-facebook-login": "^4.1.1",
+    "react-fullscreen-loading": "^0.0.4",
     "react-google-login": "^5.2.2",
     "react-particles-js": "^3.4.1",
     "react-router-dom": "^5.2.0",

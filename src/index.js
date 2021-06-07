@@ -1,5 +1,13 @@
-import React from "react";
-import Routes from "./Routes";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
+import Loading from "react-fullscreen-loading";
+const Routes = lazy(() => import("./Routes"));
 
-ReactDOM.render(<Routes />, document.getElementById("root"));
+ReactDOM.render(
+	<Suspense
+		fallback={<Loading loading background="#000" loaderColor="#3498db" />}
+	>
+		<Routes />
+	</Suspense>,
+	document.getElementById("root")
+);

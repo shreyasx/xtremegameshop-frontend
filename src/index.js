@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
 import Loading from "react-fullscreen-loading";
+import registerServiceWorker from "./registerServiceWorker";
 const Routes = lazy(() => import("./Routes"));
 
 ReactDOM.render(
@@ -11,3 +12,5 @@ ReactDOM.render(
 	</Suspense>,
 	document.getElementById("root")
 );
+
+registerServiceWorker();

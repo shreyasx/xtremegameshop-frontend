@@ -12,17 +12,22 @@ import ResetPassword from "./user/resetPass";
 import Purchases from "./user/purchases";
 import ForgotPassword from "./user/forgotPass";
 import NewPassword from "./user/newPassword";
-import {
-	lazyAdminDashboard,
-	lazyUpdateCategory,
-	lazyUpdateProduct,
-	lazyAddCategory,
-	lazyManageProducts,
-	lazyAddProduct,
-	lazyManageCategories,
-} from "./lazyComponents";
 
 const AdminRoute = lazy(() => import("./auth/helper/AdminRoutes"));
+const AddCategory = lazy(() => import("./admin/AddCategory"));
+const ManageCategories = lazy(() => import("./admin/ManageCategories"));
+const AddProduct = lazy(() => import("./admin/AddProduct"));
+const ManageProducts = lazy(() => import("./admin/ManageProducts"));
+const UpdateProduct = lazy(() => import("./admin/UpdateProduct"));
+const UpdateCategory = lazy(() => import("./admin/UpdateCategory"));
+const AdminDashboard = lazy(() => import("./user/AdminDashBoard"));
+const lazyAdminDashboard = () => <AdminDashboard />;
+const lazyUpdateCategory = () => <UpdateCategory />;
+const lazyUpdateProduct = () => <UpdateProduct />;
+const lazyManageProducts = () => <ManageProducts />;
+const lazyAddCategory = () => <AddCategory />;
+const lazyManageCategories = () => <ManageCategories />;
+const lazyAddProduct = () => <AddProduct />;
 
 const Routes = () => {
 	return (

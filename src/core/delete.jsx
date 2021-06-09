@@ -11,32 +11,43 @@ const Delete = ({ history }) => {
 			{loading ? (
 				<h3 className="alert alert-info">Loading...</h3>
 			) : (
-				<button
-					onClick={() => {
-						setLoading(true);
-						fetch(`${API}/delete/${isAuthenticated().user._id}`, {
-							method: "GET",
-							headers: {
-								Accept: "application/json",
-								"Content-Type": "application/json",
-								Authorization: `Bearer ${isAuthenticated().token}`,
-							},
-						})
-							.then(R => R.json())
-							.then(resp => {
-								console.log(resp);
-								if (resp === "Account deleted successfully!") {
-									signout(() => {
-										history.push("/");
-									});
-								}
+				<>
+					{" "}
+					<button
+						style={{ width: "300px" }}
+						onClick={() => {
+							setLoading(true);
+							fetch(`${API}/delete/${isAuthenticated().user._id}`, {
+								method: "GET",
+								headers: {
+									Accept: "application/json",
+									"Content-Type": "application/json",
+									Authorization: `Bearer ${isAuthenticated().token}`,
+								},
 							})
-							.catch(console.log);
-					}}
-					className="btn btn-outline-danger"
-				>
-					PERMANENTLY DELETE ACCOUNT
-				</button>
+								.then(R => R.json())
+								.then(resp => {
+									console.log(resp);
+									if (resp === "Account deleted successfully!") {
+										signout(() => {
+											history.push("/");
+										});
+									}
+								})
+								.catch(console.log);
+						}}
+						className="btn btn-outline-danger"
+					>
+						PERMANENTLY DELETE ACCOUNT
+					</button>
+					<br />
+					<button
+						style={{ width: "300px" }}
+						className="btn btn-outline-success"
+					>
+						Go back
+					</button>
+				</>
 			)}
 		</>
 	) : (

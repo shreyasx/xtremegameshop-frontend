@@ -16,7 +16,6 @@ const UpdateCategory = ({ match }) => {
 	const preload = categoryId => {
 		if (performPreload)
 			getCategory(categoryId).then(data => {
-				console.log("pre ", data);
 				if (data.error) {
 					setError(data.error);
 					setPerformPreload(false);

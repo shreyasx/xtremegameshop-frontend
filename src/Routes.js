@@ -6,9 +6,7 @@ import Signin from "./user/Signin";
 import PrivateRoute from "./auth/helper/PrivateRoutes";
 import UserDashboard from "./user/UserDashBoard";
 import Cart from "./core/Cart";
-import Delete from "./core/delete";
 import Verify from "./user/verify";
-import ResetPassword from "./user/resetPass";
 import Purchases from "./user/purchases";
 import ForgotPassword from "./user/forgotPass";
 import NewPassword from "./user/newPassword";
@@ -21,9 +19,13 @@ const ManageProducts = lazy(() => import("./admin/ManageProducts"));
 const UpdateProduct = lazy(() => import("./admin/UpdateProduct"));
 const UpdateCategory = lazy(() => import("./admin/UpdateCategory"));
 const AdminDashboard = lazy(() => import("./user/AdminDashBoard"));
+const Delete = lazy(() => import("./core/delete"));
+const ResetPassword = lazy(() => import("./user/resetPass"));
+const lazyResetPassword = () => <ResetPassword />;
+const lazyDelete = () => <Delete />;
 const lazyAdminDashboard = () => <AdminDashboard />;
-const lazyUpdateCategory = () => <UpdateCategory />;
-const lazyUpdateProduct = () => <UpdateProduct />;
+const lazyUpdateCategory = ({ match }) => <UpdateCategory match={match} />;
+const lazyUpdateProduct = ({ match }) => <UpdateProduct match={match} />;
 const lazyManageProducts = () => <ManageProducts />;
 const lazyAddCategory = () => <AddCategory />;
 const lazyManageCategories = () => <ManageCategories />;
@@ -40,9 +42,13 @@ const Routes = () => {
 				<Route path="/verify/:token" exact component={Verify} />
 				<Route path="/forgot-password/:token" exact component={NewPassword} />
 				<Route path="/forgot-password" exact component={ForgotPassword} />
-				<PrivateRoute path="/reset-password" exact component={ResetPassword} />
+				<PrivateRoute
+					path="/reset-password"
+					exact
+					component={lazyResetPassword}
+				/>
 				<PrivateRoute path="/purchases" exact component={Purchases} />
-				<Route path="/delete-account" exact component={Delete} />
+				<Route path="/delete-account" exact component={lazyDelete} />
 				<PrivateRoute path="/user/dashboard" exact component={UserDashboard} />
 				<AdminRoute
 					path="/admin/dashboard"

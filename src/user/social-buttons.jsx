@@ -109,7 +109,7 @@ const Buttons = ({ setValues, values }) => {
 				clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
 				render={renderProps => (
 					<button
-						class={`social-button`}
+						className={`social-button`}
 						onClick={renderProps.onClick}
 						disabled={renderProps.disabled}
 					>
@@ -124,7 +124,7 @@ const Buttons = ({ setValues, values }) => {
 								style={{ width: "25px" }}
 								src={google}
 								alt="google-logo"
-								srcset=""
+								srcSet=""
 							/>
 						</div>
 					</button>

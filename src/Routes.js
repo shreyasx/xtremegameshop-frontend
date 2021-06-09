@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./core/Home";
 import Signup from "./user/Signup";
@@ -12,16 +12,17 @@ import ResetPassword from "./user/resetPass";
 import Purchases from "./user/purchases";
 import ForgotPassword from "./user/forgotPass";
 import NewPassword from "./user/newPassword";
+import {
+	lazyAdminDashboard,
+	lazyUpdateCategory,
+	lazyUpdateProduct,
+	lazyAddCategory,
+	lazyManageProducts,
+	lazyAddProduct,
+	lazyManageCategories,
+} from "./lazyComponents";
 
-// TODO: Lazy load the following imports.
-import AddProduct from "./admin/AddProduct";
-import ManageProducts from "./admin/ManageProducts";
-import UpdateProduct from "./admin/UpdateProduct";
-import UpdateCategory from "./admin/UpdateCategory";
-import AdminDashboard from "./user/AdminDashBoard";
-import AdminRoute from "./auth/helper/AdminRoutes";
-
-import { lazyAddCategory, lazyManageCategories } from "./lazyComponents";
+const AdminRoute = lazy(() => import("./auth/helper/AdminRoutes"));
 
 const Routes = () => {
 	return (
@@ -38,7 +39,11 @@ const Routes = () => {
 				<PrivateRoute path="/purchases" exact component={Purchases} />
 				<Route path="/delete-account" exact component={Delete} />
 				<PrivateRoute path="/user/dashboard" exact component={UserDashboard} />
-				<AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+				<AdminRoute
+					path="/admin/dashboard"
+					exact
+					component={lazyAdminDashboard}
+				/>
 				<AdminRoute
 					path="/admin/create/category"
 					exact
@@ -49,17 +54,25 @@ const Routes = () => {
 					exact
 					component={lazyManageCategories}
 				/>
-				<AdminRoute path="/admin/create/product" exact component={AddProduct} />
-				<AdminRoute path="/admin/products" exact component={ManageProducts} />
+				<AdminRoute
+					path="/admin/create/product"
+					exact
+					component={lazyAddProduct}
+				/>
+				<AdminRoute
+					path="/admin/products"
+					exact
+					component={lazyManageProducts}
+				/>
 				<AdminRoute
 					path="/admin/product/update/:productId"
 					exact
-					component={UpdateProduct}
+					component={lazyUpdateProduct}
 				/>
 				<AdminRoute
 					path="/admin/category/update/:categoryId"
 					exact
-					component={UpdateCategory}
+					component={lazyUpdateCategory}
 				/>
 			</Switch>
 		</BrowserRouter>

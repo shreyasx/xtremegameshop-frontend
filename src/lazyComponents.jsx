@@ -1,18 +1,33 @@
-import React, { Suspense, lazy } from "react";
+import React, { lazy } from "react";
 
 const AddCategory = lazy(() => import("./admin/AddCategory"));
 const ManageCategories = lazy(() => import("./admin/ManageCategories"));
+const AddProduct = lazy(() => import("./admin/AddProduct"));
+const ManageProducts = lazy(() => import("./admin/ManageProducts"));
+const UpdateProduct = lazy(() => import("./admin/UpdateProduct"));
+const UpdateCategory = lazy(() => import("./admin/UpdateCategory"));
+const AdminDashboard = lazy(() => import("./user/AdminDashBoard"));
 
-const lazyAddCategory = () => (
-	<Suspense fallback={<h1 className="text-white">Loading admin routes...</h1>}>
-		<AddCategory />
-	</Suspense>
-);
+const lazyAdminDashboard = () => <AdminDashboard />;
 
-const lazyManageCategories = () => (
-	<Suspense fallback={<h1 className="text-white">Loading admin routes...</h1>}>
-		<ManageCategories />
-	</Suspense>
-);
+const lazyUpdateCategory = () => <UpdateCategory />;
 
-export { lazyAddCategory, lazyManageCategories };
+const lazyUpdateProduct = () => <UpdateProduct />;
+
+const lazyManageProducts = () => <ManageProducts />;
+
+const lazyAddCategory = () => <AddCategory />;
+
+const lazyManageCategories = () => <ManageCategories />;
+
+const lazyAddProduct = () => <AddProduct />;
+
+export {
+	lazyAdminDashboard,
+	lazyUpdateCategory,
+	lazyUpdateProduct,
+	lazyAddCategory,
+	lazyManageProducts,
+	lazyAddProduct,
+	lazyManageCategories,
+};

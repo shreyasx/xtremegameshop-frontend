@@ -92,6 +92,7 @@ const Buttons = ({ setValues, values }) => {
 				appId={process.env.REACT_APP_FACEBOOK_APPID}
 				callback={responseFacebook}
 				onClick={componentClicked}
+				autoLoad
 				render={renderProps => (
 					<button class={`social-button`} onClick={renderProps.onClick}>
 						<div

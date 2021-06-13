@@ -92,9 +92,10 @@ const Buttons = ({ setValues, values }) => {
 				appId={process.env.REACT_APP_FACEBOOK_APPID}
 				callback={responseFacebook}
 				onClick={componentClicked}
-				autoLoad
+				autoLoad={true}
+				fields="name,email,picture"
 				render={renderProps => (
-					<button class={`social-button`} onClick={renderProps.onClick}>
+					<button className={`social-button`} onClick={renderProps.onClick}>
 						<div
 							style={{
 								background: "rgb(255, 255, 255)",
@@ -102,7 +103,7 @@ const Buttons = ({ setValues, values }) => {
 								borderRadius: "2px",
 							}}
 						>
-							<img style={{ width: "25px" }} src={fb} alt="fb-logo" srcset="" />
+							<img style={{ width: "25px" }} src={fb} alt="fb-logo" srcSet="" />
 						</div>
 					</button>
 				)}

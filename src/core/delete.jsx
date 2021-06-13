@@ -16,6 +16,7 @@ const Delete = ({ history }) => {
 					<button
 						style={{ width: "300px" }}
 						onClick={() => {
+							window.confirm("This action cannot be undone.");
 							setLoading(true);
 							fetch(`${API}/delete/${isAuthenticated().user._id}`, {
 								method: "GET",
@@ -44,6 +45,7 @@ const Delete = ({ history }) => {
 					<button
 						style={{ width: "300px" }}
 						className="btn btn-outline-success"
+						onClick={() => history.push("/user/dashboard")}
 					>
 						Go back
 					</button>

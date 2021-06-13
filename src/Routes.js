@@ -22,7 +22,7 @@ const AdminDashboard = lazy(() => import("./user/AdminDashBoard"));
 const Delete = lazy(() => import("./core/delete"));
 const ResetPassword = lazy(() => import("./user/resetPass"));
 const lazyResetPassword = () => <ResetPassword />;
-const lazyDelete = () => <Delete />;
+const lazyDelete = ({ history }) => <Delete history={history} />;
 const lazyAdminDashboard = () => <AdminDashboard />;
 const lazyUpdateCategory = ({ match }) => <UpdateCategory match={match} />;
 const lazyUpdateProduct = ({ match }) => <UpdateProduct match={match} />;

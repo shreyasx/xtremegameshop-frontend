@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { signup } from "../auth/helper";
-import Buttons from "./social-buttons";
+// import Buttons from "./social-buttons";
 import { toast } from "react-toastify";
 import { authenticate, isAuthenticated } from "../auth/helper";
 import { Redirect } from "react-router-dom";
@@ -81,7 +81,7 @@ const Signup = () => {
 						<button onClick={onSubmit} className="btn btn-success btn-block">
 							Submit
 						</button>
-						<Buttons setValues={setValues} values={values} />
+						{/* <Buttons setValues={setValues} values={values} /> */}
 					</form>
 				</div>
 			</div>

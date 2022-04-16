@@ -46,7 +46,7 @@ const Base = ({
 						<br /> &#169; All rights reserved.
 					</h6>
 					<a
-						href="https://drive.google.com/file/d/18Vwynqc0O32Gt5Z-1ei0OBUmu910DX6d/view?usp=sharing"
+						href="https://docs.google.com/document/d/11P7EbYV8J13lADUeqlYoXwc3SJcYFlAw/edit?usp=sharing&ouid=111136029057069767007&rtpof=true&sd=true"
 						target="_blank"
 						rel="noreferrer"
 					>

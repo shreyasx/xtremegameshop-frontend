@@ -5,7 +5,7 @@ import { signin, authenticate, isAuthenticated } from "../auth/helper";
 import { toast } from "react-toastify";
 import Particles from "react-particles-js";
 import bodyConfig from "../body";
-// import Buttons from "./social-buttons";
+import Buttons from "./social-buttons";
 
 const Signin = () => {
 	const [values, setValues] = useState({
@@ -115,7 +115,7 @@ const Signin = () => {
 						<button onClick={onSubmit} className="btn btn-success btn-block">
 							Submit
 						</button>
-						{/* <Buttons setValues={setValues} values={values} /> */}
+						<Buttons setValues={setValues} values={values} />
 					</form>
 				</div>
 			</div>

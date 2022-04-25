@@ -1,10 +1,10 @@
 // import FacebookLogin from "react-facebook-login";
 import { API } from "../backend";
 import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+// import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import React from "react";
 import { authenticate } from "../auth/helper";
-import fb from "../images/fb.jpg";
+// import fb from "../images/fb.jpg";
 import google from "../images/google.jpg";
 
 const Buttons = ({ setValues, values }) => {
@@ -42,53 +42,53 @@ const Buttons = ({ setValues, values }) => {
 			});
 	};
 
-	const componentClicked = () => {
-		console.log("FB Clicked!");
-		setValues({ ...values, error: false });
-	};
+	// const componentClicked = () => {
+	// 	console.log("FB Clicked!");
+	// 	setValues({ ...values, error: false });
+	// };
 
-	const responseFacebook = response => {
-		console.log("FB callback fired with response- ", response);
-		const { name, email, userID } = response;
-		fetch(`${API}/signup/facebook`, {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ name, email, userID }),
-		})
-			.then(r => r.json())
-			.then(data => {
-				if (data.error) {
-					setValues({
-						...values,
-						error:
-							"An account already exists with that email, but you cannot use your " +
-							"Facebook account to sign in. Please enter your password.",
-						loading: false,
-					});
-				} else {
-					authenticate(data, () => {
-						setValues({
-							...values,
-							didRedirect: true,
-							loading: false,
-						});
-					});
-				}
-			})
-			.catch(er => {
-				console.log("Signin request failed");
-			});
-	};
+	// const responseFacebook = response => {
+	// 	console.log("FB callback fired with response- ", response);
+	// 	const { name, email, userID } = response;
+	// 	fetch(`${API}/signup/facebook`, {
+	// 		method: "POST",
+	// 		headers: {
+	// 			Accept: "application/json",
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify({ name, email, userID }),
+	// 	})
+	// 		.then(r => r.json())
+	// 		.then(data => {
+	// 			if (data.error) {
+	// 				setValues({
+	// 					...values,
+	// 					error:
+	// 						"An account already exists with that email, but you cannot use your " +
+	// 						"Facebook account to sign in. Please enter your password.",
+	// 					loading: false,
+	// 				});
+	// 			} else {
+	// 				authenticate(data, () => {
+	// 					setValues({
+	// 						...values,
+	// 						didRedirect: true,
+	// 						loading: false,
+	// 					});
+	// 				});
+	// 			}
+	// 		})
+	// 		.catch(er => {
+	// 			console.log("Signin request failed");
+	// 		});
+	// };
 
 	return (
 		<div style={{ margin: "20px 0", textAlign: "center" }}>
 			<h5 style={{ display: "inline-block", margin: "0px 20px" }}>
 				Or continue with:{" "}
 			</h5>
-			<FacebookLogin
+			{/* <FacebookLogin
 				appId={process.env.REACT_APP_FACEBOOK_APPID}
 				callback={responseFacebook}
 				onClick={componentClicked}
@@ -107,7 +107,7 @@ const Buttons = ({ setValues, values }) => {
 						</div>
 					</button>
 				)}
-			/>
+			/> */}
 			<GoogleLogin
 				clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
 				render={renderProps => (

@@ -5,7 +5,9 @@ import Buttons from "./social-buttons";
 import { toast } from "react-toastify";
 import { authenticate, isAuthenticated } from "../auth/helper";
 import { Redirect } from "react-router-dom";
-import Particles from "react-particles-js";
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 import bodyConfig from "../body";
 
 const Signup = () => {
@@ -16,6 +18,16 @@ const Signup = () => {
 		loading: false,
 		didRedirect: false,
 	});
+
+	const particlesInit = useCallback(async engine => {
+		console.log(engine);
+		engine = Object.assign(engine, bodyConfig);
+		await loadFull(engine);
+	}, []);
+
+	const particlesLoaded = useCallback(container => {
+		console.log(container);
+	}, []);
 
 	const { name, email, password, loading, didRedirect } = values;
 	const { user } = isAuthenticated();
@@ -81,7 +93,7 @@ const Signup = () => {
 						<button onClick={onSubmit} className="btn btn-success btn-block">
 							Submit
 						</button>
-						<Buttons setValues={setValues} values={values} />
+						{/* <Buttons setValues={setValues} values={values} /> */}
 					</form>
 				</div>
 			</div>
@@ -114,7 +126,12 @@ const Signup = () => {
 
 	return (
 		<>
-			<Particles params={bodyConfig} />
+			<Particles
+				id="tsparticles"
+				url="/particles.json"
+				init={particlesInit}
+				loaded={particlesLoaded}
+			/>
 			<Base
 				title="Signup to Xtreme Gameshop"
 				description="Signup now to be able to buy your favourite games!"

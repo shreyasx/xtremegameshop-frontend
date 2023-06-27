@@ -3,9 +3,11 @@ import Base from "../core/Base";
 import { Redirect, Link } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
 import { toast } from "react-toastify";
-import Particles from "react-particles-js";
 import bodyConfig from "../body";
 import Buttons from "./social-buttons";
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 
 const Signin = () => {
 	const [values, setValues] = useState({
@@ -22,6 +24,16 @@ const Signin = () => {
 	const handleChange = name => event => {
 		setValues({ ...values, error: false, [name]: event.target.value });
 	};
+
+	const particlesInit = useCallback(async engine => {
+		console.log(engine);
+		engine = Object.assign(engine, bodyConfig);
+		await loadFull(engine);
+	}, []);
+
+	const particlesLoaded = useCallback(container => {
+		console.log(container);
+	}, []);
 
 	const onSubmit = event => {
 		event.preventDefault();
@@ -88,7 +100,7 @@ const Signin = () => {
 		return (
 			<div className="row">
 				<div className="col-md-6 offset-sm-3 text-left">
-					<form>
+					<form onSubmit={e => e.preventDefault()}>
 						<div className="form-group">
 							<label className="text-light">Email</label>
 							<input
@@ -115,7 +127,7 @@ const Signin = () => {
 						<button onClick={onSubmit} className="btn btn-success btn-block">
 							Submit
 						</button>
-						<Buttons setValues={setValues} values={values} />
+						{/* <Buttons setValues={setValues} values={values} /> */}
 					</form>
 				</div>
 			</div>
@@ -124,7 +136,12 @@ const Signin = () => {
 
 	return (
 		<>
-			<Particles params={bodyConfig} />
+			<Particles
+				id="tsparticles"
+				url="/particles.json"
+				init={particlesInit}
+				loaded={particlesLoaded}
+			/>
 			<Base title="Signin" description="Signin to your account to make orders!">
 				{loadingMessage()}
 				{errorMessage()}

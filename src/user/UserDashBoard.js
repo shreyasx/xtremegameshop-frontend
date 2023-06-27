@@ -4,13 +4,25 @@ import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
 import { API } from "../backend";
 import { toast } from "react-toastify";
-import Particles from "react-particles-js";
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 import bodyConfig from "../body";
 
 const UserDashboard = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [verified, setVerified] = useState(true);
+
+	const particlesInit = useCallback(async engine => {
+		console.log(engine);
+		engine = Object.assign(engine, bodyConfig);
+		await loadFull(engine);
+	}, []);
+
+	const particlesLoaded = useCallback(container => {
+		console.log(container);
+	}, []);
 
 	const isVerified = () => {
 		fetch(`${API}/user/${isAuthenticated().user._id}`, {
@@ -58,7 +70,12 @@ const UserDashboard = () => {
 
 	return (
 		<>
-			<Particles params={bodyConfig} />
+			<Particles
+				id="tsparticles"
+				url="/particles.json"
+				init={particlesInit}
+				loaded={particlesLoaded}
+			/>
 			<Base title="User Dashboard">
 				{loadingMessage()}
 				{errorMessage()}

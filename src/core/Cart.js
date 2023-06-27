@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../styles.css";
 import Base from "./Base";
 import Card2 from "./newCard";
@@ -11,8 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { emptyCart } from "./helper/carthelper";
 import { API } from "../backend";
-import Particles from "react-particles-js";
+import Particles from "react-particles";
 import bodyConfig from "../body";
+import { loadFull } from "tsparticles";
 
 toast.configure();
 
@@ -22,6 +23,16 @@ const Cart = () => {
 	const [loading, setLoading] = useState(true);
 	const [payLoading, setPayLoading] = useState(false);
 	const [verified, setVerified] = useState(false);
+
+	const particlesInit = useCallback(async engine => {
+		console.log(engine);
+		engine = Object.assign(engine, bodyConfig);
+		await loadFull(engine);
+	}, []);
+
+	const particlesLoaded = useCallback(container => {
+		console.log(container);
+	}, []);
 
 	const isVerified = () => {
 		fetch(`${API}/user/${isAuthenticated().user._id}`, {
@@ -164,7 +175,12 @@ const Cart = () => {
 
 	return (
 		<>
-			<Particles params={bodyConfig} />
+			<Particles
+				id="tsparticles"
+				url="/particles.json"
+				init={particlesInit}
+				loaded={particlesLoaded}
+			/>
 			<Base title="Your Cart" description="Ready to checkout">
 				<div className="row text-white">
 					{!isAuthenticated().user ? (

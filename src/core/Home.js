@@ -4,14 +4,26 @@ import Base from "./Base";
 import Card2 from "./newCard";
 import { getProducts } from "./helper/coreapicalls";
 import { API } from "../backend";
-import Particles from "react-particles-js";
 import bodyConfig from "../body";
+import { useCallback } from "react";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 
 export default function Home() {
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
+
+	const particlesInit = useCallback(async engine => {
+		console.log(engine);
+		engine = Object.assign(engine, bodyConfig);
+		await loadFull(engine);
+	}, []);
+
+	const particlesLoaded = useCallback(container => {
+		console.log(container);
+	}, []);
 
 	const loadAllProducts = () => {
 		getProducts().then(data => {
@@ -55,7 +67,12 @@ export default function Home() {
 
 	return (
 		<>
-			<Particles params={bodyConfig} />
+			<Particles
+				id="tsparticles"
+				url="/particles.json"
+				init={particlesInit}
+				loaded={particlesLoaded}
+			/>
 			<Base
 				id="main-title"
 				title="XTREME Gameshop"
